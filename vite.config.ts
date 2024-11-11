@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
+import dtsPlugin from "vite-plugin-dts";
 
 export default defineConfig((config) => {
   let build = {};
@@ -23,7 +24,11 @@ export default defineConfig((config) => {
     };
   }
   return {
-    plugins: [vue(), vueDevTools()],
+    plugins: [
+      vue(),
+      vueDevTools(),
+      dtsPlugin({ tsconfigPath: "./tsconfig.lib.json" }),
+    ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),

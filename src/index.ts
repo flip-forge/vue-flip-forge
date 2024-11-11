@@ -1,3 +1,3 @@
-import FlipForge from "@/components/flip-forge.vue";
+import FlipForge from "@/lib/flip-forge.vue";
 
 export default FlipForge;

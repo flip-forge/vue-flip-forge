@@ -88,14 +88,14 @@
 <script lang="ts">
 import { defineComponent, type PropType } from "vue";
 
-import CloudAltDownload from "@/components/icons/cloud-alt-download.vue";
-import ChevronDoubleLeft from "@/components/icons/chevron-double-left.vue";
-import ChevronLeft from "@/components/icons/chevron-left.vue";
-import ChevronRight from "@/components/icons/chevron-right.vue";
-import ChevronDoubleRight from "@/components/icons/chevron-double-right.vue";
-import VueIntersectionObserver from "@/components/vue-intersection-observer.vue";
-import GithubAlt from "@/components/icons/github-alt.vue";
-import type { FlipForgeOptions, FlipPage } from "@/components/index";
+import CloudAltDownload from "@/lib/icons/cloud-alt-download.vue";
+import ChevronDoubleLeft from "@/lib/icons/chevron-double-left.vue";
+import ChevronLeft from "@/lib/icons/chevron-left.vue";
+import ChevronRight from "@/lib/icons/chevron-right.vue";
+import ChevronDoubleRight from "@/lib/icons/chevron-double-right.vue";
+import VueIntersectionObserver from "@/lib/vue-intersection-observer.vue";
+import GithubAlt from "@/lib/icons/github-alt.vue";
+import type { FlipForgeOptions, FlipPage } from "@/lib/index";
 
 const defaultOptions: FlipForgeOptions = {
   keyboardNavigation: true,
@@ -313,7 +313,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .flip-forge {
   line-height: 1.6;
   font-family:

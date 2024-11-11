@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import FlipForge from "@/components/flip-forge.vue";
+import FlipForge from "@/lib/flip-forge.vue";
 import { useRouteQuery } from "@vueuse/router";
 import downloadUrl from "@/assets/lorem_ipsum.pdf";
 
