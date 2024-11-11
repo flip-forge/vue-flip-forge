@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: npm run build:app
+      - run: npm run build
       - id: e2e_tests
         run: npm run test:e2e
       - uses: actions/upload-artifact@v4
