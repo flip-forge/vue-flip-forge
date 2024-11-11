@@ -1,6 +1,7 @@
 <template>
   <component
     :is="flipForge"
+    v-if="flipForge"
     v-model="page"
     :pages="pages"
     :download-url="downloadUrl"
@@ -24,6 +25,8 @@ export default defineComponent({
   },
   computed: {
     flipForge() {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore: Only works after build
       return defineAsyncComponent(() => import("../../"));
     },
     pages() {
