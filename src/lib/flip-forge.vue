@@ -78,8 +78,8 @@
         target="_blank"
         rel="noreferrer noopener"
       >
+        <span>@flip-forge</span>
         <github-alt />
-        <span>flip-forge</span>
       </a>
     </div>
   </div>
@@ -513,8 +513,8 @@ export default defineComponent({
 
 .attribution {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 1em;
+  right: 1em;
   color: var(--toolbarColor);
   filter: opacity(50%);
   font-size: smaller;
@@ -525,7 +525,7 @@ export default defineComponent({
     color: var(--toolbarColor);
     text-decoration: none;
     svg {
-      margin: 0 0.5rem;
+      margin: 0 0.5em;
     }
   }
 }

@@ -1,8 +1,21 @@
 {
-  "name": "flip-forge",
+  "name": "@flip-forge/vue-flip-forge",
   "version": "0.1.0",
   "type": "module",
   "private": false,
+  "description": "Lightweight component to generate a simply flipbook from a list of images.",
+  "keywords": [
+    "flipbook",
+    "digital catalog",
+    "vue3"
+  ],
+  "homepage": "https://github.com/flip-forge/vue-flip-forge#README",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flip-forge/vue-flip-forge.git"
+  },
+  "license": "GPL-3.0-only",
+  "author": "alexkiro",
   "scripts": {
     "dev": "vite",
     "build:app": "run-p type-check \"build-only:app {@}\" --",
@@ -58,12 +71,22 @@
     "vue-router": "4.4.5",
     "vue-tsc": "2.1.10"
   },
-  "main": "./dist/vue-flip-forge.js",
-  "module": "dist/vue-flip-forge.umd.cjs",
+  "types": "./dist/src/index.d.ts",
+  "main": "./dist/vue-flip-forge.umd.cjs",
+  "browser": "./dist/vue-flip-forge.umd.cjs",
+  "module": "./dist/vue-flip-forge.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-flip-forge.js"
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/vue-flip-forge.js",
+      "require": "./dist/vue-flip-forge.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18 <=23"
   }
 }

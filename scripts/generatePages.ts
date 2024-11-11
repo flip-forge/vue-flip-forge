@@ -15,7 +15,7 @@ function getBookInfo(path: string): Record<string, string> {
   pdfInfo
     .toString()
     .split("\n")
-    .forEach((s) => {
+    .forEach((s: string) => {
       const line = s.trim();
       if (!line) return;
 
