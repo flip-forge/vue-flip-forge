@@ -74,7 +74,7 @@
     </div>
     <div v-if="opts.attribution" class="attribution">
       <a
-        href="https://github.com/flip-forge/vue-flip-forge"
+        href="https://github.com/flip-forge/"
         target="_blank"
         rel="noreferrer noopener"
       >
