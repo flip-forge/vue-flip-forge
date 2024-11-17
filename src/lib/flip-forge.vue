@@ -336,7 +336,8 @@ export default defineComponent({
       }
     },
     onWheel(event: WheelEvent) {
-      if (!this.opts.wheelNavigation || !this.isLoaded) return;
+      if (!this.opts.wheelNavigation || this.singlePageMode || !this.isLoaded)
+        return;
 
       if (event.deltaY > 0) {
         this.goNext();

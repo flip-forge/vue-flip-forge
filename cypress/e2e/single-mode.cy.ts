@@ -5,22 +5,6 @@ describeAll("Test flip forge book", () => {
     cy.viewport(414, 768);
   });
 
-  it("Check wheel navigation", () => {
-    cy.get(".toolbar").contains("1 / 10");
-    cy.get('[data-page="1"]').should("be.visible");
-    cy.get("body").trigger("wheel", { deltaY: 120 });
-    cy.get(".toolbar").contains("2 / 10");
-    cy.get('[data-page="2"]').should("be.visible");
-
-    cy.get("body").trigger("wheel", { deltaY: 120 });
-    cy.get(".toolbar").contains("3 / 10");
-    cy.get('[data-page="3"]').should("be.visible");
-
-    cy.get("body").trigger("wheel", { deltaY: -120 });
-    cy.get(".toolbar").contains("2 / 10");
-    cy.get('[data-page="2"]').should("be.visible");
-  });
-
   it("Check toolbar navigation", () => {
     cy.get(".toolbar").contains("1 / 10");
     cy.get('[data-page="1"]').should("be.visible");
