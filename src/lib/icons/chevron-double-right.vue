@@ -14,23 +14,8 @@
       stroke-linejoin="round"
       stroke-width="2"
     >
-      <path d="M19 12l-7 -7M19 12l-7 7">
-        <animate
-          fill="freeze"
-          attributeName="stroke-dashoffset"
-          dur="0.3s"
-          values="12;0"
-        />
-      </path>
-      <path d="M13 12l-7 -7M13 12l-7 7">
-        <animate
-          fill="freeze"
-          attributeName="stroke-dashoffset"
-          begin="0.3s"
-          dur="0.3s"
-          values="12;0"
-        />
-      </path>
+      <path d="M19 12l-7 -7M19 12l-7 7" stroke-dashoffset="0" />
+      <path d="M13 12l-7 -7M13 12l-7 7" stroke-dashoffset="0" />
     </g>
   </svg>
 </template>
