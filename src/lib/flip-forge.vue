@@ -211,6 +211,9 @@ export default defineComponent({
       return result;
     },
     pagesToLoad(): FlipPage[] {
+      if (this.singlePageMode) {
+        return [this.parsedPages[this.currentPage]];
+      }
       return this.parsedPages.filter(
         (page) => page.url && Math.abs(page.number - this.currentPage) <= 4,
       );
@@ -427,6 +430,22 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
   }
+
+  img {
+    width: 100%;
+    height: auto;
+    user-select: none;
+
+    background-image: none;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
 
 .toolbar {
@@ -550,22 +569,6 @@ export default defineComponent({
 
   &.back {
     transform: translateX(25%);
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    user-select: none;
-
-    background-image: none;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center center;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
   }
 
   .page {
