@@ -1,6 +1,6 @@
 {
   "name": "@flip-forge/vue-flip-forge",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "private": false,
   "description": "Lightweight vue component to generate a simple flipbook from a list of images.",
