@@ -16,4 +16,5 @@ export interface FlipForgeOptions {
 export interface FlipPage {
   url: string;
   number: number;
+  backgroundImage?: string;
 }

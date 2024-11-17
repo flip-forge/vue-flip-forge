@@ -34,10 +34,18 @@
       >
         <img
           v-if="page.url"
-          :src="page.url"
+          :src="getPageSrc(page)"
           alt=""
           draggable="false"
           loading="lazy"
+          :width="width"
+          :height="height"
+          :style="{
+            backgroundImage: page.backgroundImage
+              ? `url(${page.backgroundImage})`
+              : 'none',
+          }"
+          @load="onLoad(page)"
         />
       </div>
     </vue-intersection-observer>
@@ -82,6 +90,9 @@
         <github-alt />
       </a>
     </div>
+    <div v-if="!isLoaded" class="loading-indicator">
+      <loading-loop />
+    </div>
   </div>
 </template>
 
@@ -96,6 +107,7 @@ import ChevronDoubleRight from "@/lib/icons/chevron-double-right.vue";
 import VueIntersectionObserver from "@/lib/vue-intersection-observer.vue";
 import GithubAlt from "@/lib/icons/github-alt.vue";
 import type { FlipForgeOptions, FlipPage } from "@/lib/index";
+import LoadingLoop from "@/lib/icons/loading-loop.vue";
 
 const defaultOptions: FlipForgeOptions = {
   keyboardNavigation: true,
@@ -112,6 +124,7 @@ const defaultOptions: FlipForgeOptions = {
 
 export default defineComponent({
   components: {
+    LoadingLoop,
     GithubAlt,
     VueIntersectionObserver,
     ChevronDoubleRight,
@@ -130,6 +143,21 @@ export default defineComponent({
       type: Object as PropType<string[]>,
       required: true,
     },
+    lowResPages: {
+      type: Object as PropType<string[]>,
+      required: false,
+      default: null,
+    },
+    width: {
+      type: Number,
+      required: false,
+      default: null,
+    },
+    height: {
+      type: Number,
+      required: false,
+      default: null,
+    },
     downloadUrl: {
       type: String,
       default: null,
@@ -144,6 +172,9 @@ export default defineComponent({
     return {
       internalPage: 0,
       windowWidth: window.innerWidth,
+      loaded: {} as Record<number, boolean>,
+      loadingStarted: {} as Record<string, boolean>,
+      isLoaded: false,
     };
   },
   computed: {
@@ -173,10 +204,16 @@ export default defineComponent({
         result.push({
           url: this.pages[i],
           number: i + 1,
+          backgroundImage: this.lowResPages?.[i],
         });
       }
 
       return result;
+    },
+    pagesToLoad(): FlipPage[] {
+      return this.parsedPages.filter(
+        (page) => page.url && Math.abs(page.number - this.currentPage) <= 4,
+      );
     },
     startPage(): number {
       return this.singlePageMode ? 1 : 0;
@@ -211,6 +248,16 @@ export default defineComponent({
     window.removeEventListener("resize", this.onResize);
   },
   methods: {
+    getPageSrc(page: FlipPage): string {
+      if (this.loadingStarted[page.url] || !page.backgroundImage)
+        return page.url;
+
+      if (Math.abs(this.currentPage - page.number) <= 4) {
+        this.loadingStarted[page.url] = true;
+        return page.url;
+      }
+      return page.backgroundImage;
+    },
     scrollToPage(page: number) {
       const behavior =
         Math.abs(this.currentPage - page) > 1 ? "instant" : "smooth";
@@ -254,7 +301,8 @@ export default defineComponent({
       }
     },
     onPageClick(index: number) {
-      if (!this.opts.clickNavigation || this.singlePageMode) return;
+      if (!this.opts.clickNavigation || this.singlePageMode || !this.isLoaded)
+        return;
 
       if (index % 2 === 0) {
         this.goPrevious();
@@ -263,7 +311,7 @@ export default defineComponent({
       }
     },
     onKeyboard(event: KeyboardEvent) {
-      if (!this.opts.keyboardNavigation) return;
+      if (!this.opts.keyboardNavigation || !this.isLoaded) return;
 
       switch (event.code) {
         case "Escape":
@@ -285,7 +333,7 @@ export default defineComponent({
       }
     },
     onWheel(event: WheelEvent) {
-      if (!this.opts.wheelNavigation) return;
+      if (!this.opts.wheelNavigation || !this.isLoaded) return;
 
       if (event.deltaY > 0) {
         this.goNext();
@@ -294,7 +342,7 @@ export default defineComponent({
       }
     },
     onIntersect(entries: IntersectionObserverEntry[]) {
-      if (!this.singlePageMode) return;
+      if (!this.singlePageMode || !this.isLoaded) return;
 
       for (const entry of entries) {
         if (!entry.isIntersecting) {
@@ -308,6 +356,19 @@ export default defineComponent({
     },
     onResize() {
       this.windowWidth = window.innerWidth;
+    },
+    onLoad(page: FlipPage) {
+      this.loaded[page.number] = true;
+
+      if (!this.isLoaded) {
+        for (const pageToLoad of this.pagesToLoad) {
+          if (!this.loaded[pageToLoad.number]) {
+            return;
+          }
+        }
+
+        this.isLoaded = true;
+      }
     },
   },
 });
@@ -347,6 +408,25 @@ export default defineComponent({
     margin: 0;
     font-weight: normal;
   }
+
+  .loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+
+    background: var(--background);
+    color: var(--toolbarColor);
+    font-size: 4rem;
+    pointer-events: none;
+    touch-action: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .toolbar {
@@ -363,7 +443,7 @@ export default defineComponent({
 
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 1000;
 
   & > div {
     display: flex;
@@ -476,6 +556,16 @@ export default defineComponent({
     width: 100%;
     height: auto;
     user-select: none;
+
+    background-image: none;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 
   .page {
