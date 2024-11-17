@@ -500,9 +500,6 @@ export default defineComponent({
 
 .flipbook {
   position: absolute;
-
-  width: 100%;
-  height: 100%;
   user-select: none;
 
   display: flex;
@@ -556,6 +553,11 @@ export default defineComponent({
 }
 
 .flip-forge.book .flipbook {
+  top: 4rem;
+  bottom: 4rem;
+  left: 2rem;
+  right: 2rem;
+
   justify-content: center;
   align-items: center;
 
