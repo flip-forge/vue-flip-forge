@@ -6,6 +6,7 @@ export default function describeAll(title: string, fn: () => void) {
     "/with-svg",
     "/with-svg-portrait",
     "/with-low-res",
+    "/composition-api",
   ]) {
     describe(`${title} (${url})`, () => {
       beforeEach(() => {

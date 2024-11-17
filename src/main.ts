@@ -7,6 +7,7 @@ import WithSVG from "@/views/WithSVG.vue";
 import WithSVGPortrait from "@/views/WithSVGPortrait.vue";
 import WithLowRes from "@/views/WithLowRes.vue";
 import HomeView from "@/views/HomeView.vue";
+import CompositionAPI from "@/views/CompositionAPI.vue";
 const FromDist = () => import("@/views/FromDist.vue");
 
 const router = createRouter({
@@ -19,6 +20,7 @@ const router = createRouter({
     { path: "/with-svg", component: WithSVG },
     { path: "/with-svg-portrait", component: WithSVGPortrait },
     { path: "/with-low-res", component: WithLowRes },
+    { path: "/composition-api", component: CompositionAPI },
   ],
 });
 
