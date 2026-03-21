@@ -16,7 +16,7 @@ height set. Otherwise, it will have 0 height;
 
   ```vue
   <script setup>
-  import "@flip-forge/vue-flip-forge/dist/style.css";
+  import "@flip-forge/vue-flip-forge/dist/vue-flip-forge.css";
   import FlipForge from "@flip-forge/vue-flip-forge";
 
   const pages = [
@@ -40,7 +40,7 @@ height set. Otherwise, it will have 0 height;
 
   ```vue
   <script>
-  import "@flip-forge/vue-flip-forge/dist/style.css";
+  import "@flip-forge/vue-flip-forge/dist/vue-flip-forge.css";
   import FlipForge from "@flip-forge/vue-flip-forge";
 
   export default {
@@ -75,7 +75,7 @@ For example, to keep a route query in sync with the current page:
 
 ```vue
 <script setup>
-import "@flip-forge/vue-flip-forge/dist/style.css";
+import "@flip-forge/vue-flip-forge/dist/vue-flip-forge.css";
 import FlipForge from "@flip-forge/vue-flip-forge";
 import { useRouteQuery } from "@vueuse/router";
 

@@ -83,7 +83,7 @@
       "import": "./dist/vue-flip-forge.js",
       "require": "./dist/vue-flip-forge.umd.js"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./dist/vue-flip-forge.css": "./dist/vue-flip-forge.css"
   },
   "files": [
     "dist"
