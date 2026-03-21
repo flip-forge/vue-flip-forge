@@ -24,19 +24,12 @@ export default defineConfig({
       name: "Flip Forge",
       fileName: "vue-flip-forge",
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: ["vue"],
       output: {
         globals: {
           vue: "Vue",
         },
-      },
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: "modern-compiler",
       },
     },
   },

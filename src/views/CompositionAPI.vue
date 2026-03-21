@@ -3,7 +3,6 @@ import FlipForge from "@/lib/flip-forge.vue";
 import { useRouteQuery } from "@vueuse/router";
 import downloadUrl from "@/assets/lorem_ipsum.pdf";
 
-// eslint-disable-next-line no-useless-assignment
 const page = useRouteQuery("page", "0", {
   transform: Number,
   mode: "push",

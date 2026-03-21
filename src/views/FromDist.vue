@@ -27,7 +27,7 @@ export default defineComponent({
     flipForge() {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore: Only works after build
-      return defineAsyncComponent(() => import("../../"));
+      return defineAsyncComponent(() => import("../../dist/vue-flip-forge"));
     },
     pages() {
       const result = [];
